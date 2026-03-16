@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 
-export default function SettingsPanel() {
+interface SettingsPanelProps {
+  onLogout?: () => void;
+}
+
+export default function SettingsPanel({ onLogout }: SettingsPanelProps) {
   const [notifications, setNotifications] = useState(true);
   const [sounds, setSounds] = useState(true);
   const [twoFactor, setTwoFactor] = useState(false);
@@ -116,7 +120,7 @@ export default function SettingsPanel() {
         </div>
 
         {/* Logout */}
-        <button className="w-full glass rounded-2xl p-4 flex items-center justify-center gap-2 text-red-400 hover:bg-red-500/10 transition-all border border-red-500/10 hover:border-red-500/20 animate-fade-in-up stagger-5">
+        <button onClick={onLogout} className="w-full glass rounded-2xl p-4 flex items-center justify-center gap-2 text-red-400 hover:bg-red-500/10 transition-all border border-red-500/10 hover:border-red-500/20 animate-fade-in-up stagger-5">
           <Icon name="LogOut" size={16} />
           <span className="text-sm font-semibold font-rubik">Выйти из аккаунта</span>
         </button>
